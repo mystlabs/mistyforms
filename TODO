@@ -1,0 +1,7 @@
+TODO:
+- add the prefix mf_* to all classes
+- create a basic, phone friendly style for the form
+- add support for translations (brr)
+- add javascript validation
+- add password field
+
