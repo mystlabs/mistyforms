@@ -1,6 +1,6 @@
 <?
 
-namespace MistyForms/Exception;
+namespace MistyForms\Exception;
 
 class ConfigurationException extends \Exception
 {

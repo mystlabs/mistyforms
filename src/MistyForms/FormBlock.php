@@ -37,7 +37,7 @@ class FormBlock extends FormPlugin
 
 	public function render()
 	{
-		throw new \Exception( "Unsupported method render() on " . get_class() . ", user renderWithContent() instead" );
+		throw new \BadMethodCallException( "Unsupported method render() on " . get_class() . ", user renderWithContent() instead" );
 	}
 
 	public function __call( $method, $args )
@@ -47,7 +47,7 @@ class FormBlock extends FormPlugin
 		      return call_user_func_array( array( $this->form, $method ), $args);
 		}
 
-		throw new \Exception( "Unknown method {$method} in " . get_class() );
+		throw new \BadMethodCallException( "Unknown method {$method} in " . get_class() );
 	}
 
 	public static function toSmarty( $smarty, $formBlock )

@@ -2,6 +2,7 @@
 
 namespace MistyForms;
 
+use MistyForms\Exception\ConfigurationException;
 use MistyForms\Handler;
 use MistyForms\Input\Input;
 use MistyForms\Label\Label;
@@ -48,7 +49,7 @@ class Form
 			}
 			else
 			{
-				throw new \Exception( "Trying to add a label to an input that doesn't exist: $inputId" );
+				throw new ConfigurationException( "Trying to add a label to an input that doesn't exist: $inputId" );
 			}
 
 		}
@@ -63,7 +64,7 @@ class Form
 	{
 		if( isset( $this->inputs[$input->id] ) )
 		{
-			throw new \Exception( "Duplicate name in Form: " . $input->id );
+			throw new ConfigurationException( "Duplicate name in Form: " . $input->id );
 		}
 		$this->inputs[$input->id] = $input;
 
@@ -79,12 +80,12 @@ class Form
 	{
 		if( isset( $this->inputs[$action->id] ) )
 		{
-			throw new \Exception( "A command cannot have the same id as an input field: " . $input->id );
+			throw new ConfigurationException( "A command cannot have the same id as an input field: " . $input->id );
 		}
 
 		if( isset( $this->commands[$action->id] ) )
 		{
-			throw new \Exception( "Duplicate command in Form: " . $action->name );
+			throw new ConfigurationException( "Duplicate command in Form: " . $action->name );
 		}
 		$this->commands[$action->id] = $action;
 

@@ -2,6 +2,8 @@
 
 namespace MistyForms;
 
+use MistyForms\Exception\ConfigurationException;
+
 /**
  * Base class for renderable plugins
  */
@@ -48,7 +50,7 @@ abstract class FormPlugin
 		$value = $this->optionalAttribute( $name );
 		if( $value === null )
 		{
-			throw new \Exception( "Missing required attribute '$name' in" . get_class()  );
+			throw new ConfigurationException( "Missing required attribute '$name' in" . get_class()  );
 		}
 		return $value;
 	}

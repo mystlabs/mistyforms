@@ -2,6 +2,8 @@
 
 namespace MistyForms\Input;
 
+use MistyForms\Exception\ConfigurationException;
+
 class NumericField extends TextField
 {
 	public $minValue;
@@ -98,6 +100,6 @@ class NumericField extends TextField
 			return $format;
 		}
 
-		throw new \Exception( "Invalid number format '$format'. Supported formats are: " . implode( ',', $validFormats ) );
+		throw new ConfigurationException( "Invalid number format '$format'. Supported formats are: " . implode( ',', $validFormats ) );
 	}
 }
