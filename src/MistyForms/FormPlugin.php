@@ -61,19 +61,19 @@ abstract class FormPlugin
 	 */
 	protected function stringifyRemainingAttributes()
 	{
-		$extras = array();
+		$extras = '';
 		foreach( $this->attributes as $name => $value )
 		{
-			$extras[] = "$name=\"$value\"";
+			$extras .= " $name=\"$value\"";
 		}
-		return implode( ' ', $extras );
+		return $extras;
 	}
 
 	protected function stringifyClass()
 	{
 		if( strlen( $this->class ) == 0 ) return '';
 
-		return "class=\"{$this->class}\"";
+		return " class=\"{$this->class}\"";
 	}
 
 	/**

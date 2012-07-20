@@ -81,4 +81,11 @@ abstract class Input extends FormPlugin
 	 * Validate that all the requirements of this input plugin were satisfied
 	 */
 	abstract public function validate();
+
+	protected function stringifyReadOnly()
+	{
+		if( !$this->readOnly ) return '';
+
+		return ' readonly="readonly"';
+	}
 }

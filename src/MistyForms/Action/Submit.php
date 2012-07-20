@@ -21,7 +21,7 @@ class Submit extends Action
 	public function render()
 	{
 		return sprintf(
-			'<input type="submit" name="%s" id="%s" value="%s" %s %s />',
+			'<input type="submit" name="%s" id="%s" value="%s"%s%s />',
 			$this->name,
 			$this->id,
 			$this->text,

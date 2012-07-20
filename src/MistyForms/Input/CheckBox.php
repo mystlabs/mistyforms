@@ -42,14 +42,21 @@ class CheckBox extends Input
 
 	public function render()
 	{
-		$type = " type=\"checkbox\"";
-		$name = " name=\"". $this->name ."\"";
-		$id = " id=\"". $this->id ."\"";
-		$class = strlen( $this->class ) > 0 ? " class=\"". $this->class ."\"" : "";
-		$checked = $this->checked ? " checked=\"checked\"" : "";
-		$readOnly = $this->readOnly ? " readonly=\"readonly\"" : "";
-		$extras = $this->stringifyRemainingAttributes();
+		return sprintf(
+			'<input type="checkbox" name="%s" id="%s"%s%s%s%s />',
+			$this->name,
+			$this->id,
+			$this->stringifyClass(),
+			$this->stringifyChecked(),
+			$this->stringifyReadOnly(),
+			$this->stringifyRemainingAttributes()
+		);
+	}
 
-		return "<input{$type}{$name}{$id}{$class}{$checked}{$readOnly}{$extras} />";
+	protected function stringifyChecked()
+	{
+		if( !$this->checked ) return '';
+
+		return ' checked="checked"';
 	}
 }

@@ -55,22 +55,26 @@ class SelectBox extends Input
 
 	public function render()
 	{
-		$name = " name=\"". $this->name ."\"";
-		$id = " id=\"". $this->id ."\"";
-		$class = strlen( $this->class ) > 0 ? " class=\"". $this->class ."\"" : "";
-		$readOnly = $this->readOnly ? " readonly=\"readonly\"" : "";
-		$extras = $this->stringifyRemainingAttributes();
-
-		$selectbox = "\n<select{$name}{$id}{$class}{$readOnly}{$extras}>";
+		$options = array();
 		foreach( $this->options as $option )
 		{
-			$value = " value=\"$option[value]\"";
-			$selected = $this->selected == $option['value'] ? " selected=\"selected\"" : "";
-			$selectbox .= "\n<option{$value}{$selected}>$option[text]</option>";
+			$options[] = sprintf(
+				'<option value="%s"%s>%s</option>',
+				$option['value'],
+				$this->stringifySelected($option['value']),
+				$option['text']
+			);
 		}
-		$selectbox .= "\n</select>";
 
-		return $selectbox;
+		return sprintf(
+			'<select name="%s" id="%s"%s%s%s>%s</select>',
+			$this->name,
+			$this->id,
+			$this->stringifyClass(),
+			$this->stringifyReadOnly(),
+			$this->stringifyRemainingAttributes(),
+			implode("\n", $options)
+		);
 	}
 
 	protected static function isValidValue( $value, $options )
@@ -88,6 +92,9 @@ class SelectBox extends Input
 		return false;
 	}
 
+	/**
+	 * Add description - I'm already forgetting what this does!
+	 */
 	protected static function parseOptions( array $options )
 	{
 		if( empty( $options ) ) return $options;
@@ -106,5 +113,12 @@ class SelectBox extends Input
 		}
 
 		return $parsedOptions;
+	}
+
+	protected function stringifySelected($value)
+	{
+		if( $this->selected !== $value ) return '';
+
+		return ' selected="selected"';
 	}
 }

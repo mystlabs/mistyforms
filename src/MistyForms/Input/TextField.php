@@ -60,15 +60,23 @@ class TextField extends Input
 
 	public function render()
 	{
-		$type = " type=\"{$this->type}\"";
-		$name = " name=\"{$this->name}\"";
-		$id = " id=\"". $this->id ."\"";
-		$class = strlen( $this->class ) > 0 ? " class=\"". $this->class ."\"" : "";
-		$value = strlen( $this->value ) > 0 ? " value=\"". $this->value ."\"" : "";
-		$readOnly = $this->readOnly ? " readonly=\"readonly\"" : "";
-		$maxLength = $this->maxLength > 0 ? " maxlength=\"". $this->maxLength ."\"" : "";
-		$extras = $this->stringifyRemainingAttributes();
+		return sprintf(
+			'<input type="%s" name="%s" id="%s" value="%s"%s%s%s%s />',
+			$this->type,
+			$this->name,
+			$this->id,
+			$this->value,
+			$this->stringifyClass(),
+			$this->stringifyReadOnly(),
+			$this->stringifyMaxLength(),
+			$this->stringifyRemainingAttributes()
+		);
+	}
 
-		return "<input{$type}{$name}{$id}{$class}{$value}{$readOnly}{$maxLength}{$extras} />";
+	protected function stringifyMaxLength()
+	{
+		if( !$this->readOnly ) return '';
+
+		return " maxLength=\"{$this->maxLength}\"";
 	}
 }

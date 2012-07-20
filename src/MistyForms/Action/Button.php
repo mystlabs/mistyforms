@@ -30,7 +30,7 @@ class Button extends Action
 	public function render()
 	{
 		return sprintf(
-			'<button name="%s" id="%s" %s %s>%s</button>',
+			'<button name="%s" id="%s"%s%s>%s</button>',
 			$this->name,
 			$this->id,
 			$this->stringifyClass(),
