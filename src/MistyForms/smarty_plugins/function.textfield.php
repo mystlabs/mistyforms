@@ -1,7 +1,7 @@
 <?php
 
-use MistyForms\Input\TextField;
 use MistyForms\FormBlock;
+use MistyForms\Input\TextField;
 
 function smarty_function_textfield( $params, $smarty )
 {

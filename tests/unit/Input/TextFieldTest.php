@@ -1,6 +1,6 @@
 <?php
 
-require_once '../testenv.php';
+require_once __DIR__.'/../../testenv.php';
 
 use MistyForms\Input\TextField;
 
@@ -17,7 +17,7 @@ class TextFieldTest extends MistyForms_Test
 		));
 
 		$html = $textField->render();
-		$expected = '<input type="text" name="id" id="id" class="className1 className2" value="init-value" additionalAttr="val" />';
+		$expected = '<input type="text" name="id" id="id" value="init-value" class="className1 className2" additionalAttr="val" />';
 
 		$this->assertEquals($expected, $html);
 	}

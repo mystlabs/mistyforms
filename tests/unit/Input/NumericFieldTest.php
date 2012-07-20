@@ -1,6 +1,6 @@
 <?php
 
-require_once '../testenv.php';
+require_once __DIR__.'/../../testenv.php';
 
 use MistyForms\Input\NumericField;
 
