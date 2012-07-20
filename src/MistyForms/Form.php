@@ -49,7 +49,10 @@ class Form
 			}
 			else
 			{
-				throw new ConfigurationException( "Trying to add a label to an input that doesn't exist: $inputId" );
+				throw new ConfigurationException( sprintf(
+					'Trying to add a label to an input that hasn\'t been added yet: %s',
+					$inputId
+				));
 			}
 
 		}
@@ -62,10 +65,8 @@ class Form
 	 */
 	public function registerAndRenderInput( Input $input )
 	{
-		if( isset( $this->inputs[$input->id] ) )
-		{
-			throw new ConfigurationException( "Duplicate name in Form: " . $input->id );
-		}
+		$this->ensureIdIsUnique( $input->id );
+
 		$this->inputs[$input->id] = $input;
 
 		if( $this->isPostRequest )
@@ -73,25 +74,25 @@ class Form
 			$input->fromRequest( $this->postParams );
 			$this->hasErrors = !$input->validate() || $this->hasErrors;
 		}
+
 		return $input->render();
 	}
 
+	/**
+	 * Register a new Action with this form, renders it and return the HTML code
+	 */
 	public function registerAndRenderAction( Action $action )
 	{
-		if( isset( $this->inputs[$action->id] ) )
-		{
-			throw new ConfigurationException( "A command cannot have the same id as an input field: " . $input->id );
-		}
+		$this->ensureIdIsUnique( $input->id );
 
-		if( isset( $this->commands[$action->id] ) )
-		{
-			throw new ConfigurationException( "Duplicate command in Form: " . $action->name );
-		}
 		$this->commands[$action->id] = $action;
 
 		return $action->render();
 	}
 
+	/**
+	 * If it's a POST request go through all the registered actions and check if one of them has been submitted
+	 */
 	public function executeActions()
 	{
 		if( !$this->isPostRequest ) return;
@@ -105,11 +106,17 @@ class Form
 		}
 	}
 
+	/**
+	 * Boolean indicating whether there user input was valid or not
+	 */
 	public function hasErrors()
 	{
 		return $this->hasErrors;
 	}
 
+	/**
+	 * Returns an array with all the data sent by the user
+	 */
 	public function getData()
 	{
 		$data = array();
@@ -119,5 +126,20 @@ class Form
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Check that the id is unique within this form,
+	 * and throw a MistyForms\Exception\ConfigurationException if not
+	 */
+	private function ensureIdIsUnique( $id )
+	{
+		if( isset( $this->inputs[$id] ) || isset( $this->actions[$id] ) )
+		{
+			throw new ConfigurationException( sprintf(
+				'Duplicate ID '%s'. Every input/action must have a unique ID.',
+				$id
+			));
+		}
 	}
 }
