@@ -50,7 +50,11 @@ abstract class FormPlugin
 		$value = $this->optionalAttribute( $name );
 		if( $value === null )
 		{
-			throw new ConfigurationException( "Missing required attribute '$name' in" . get_class()  );
+			throw new ConfigurationException(sprintf(
+				"Missing required attribute '%s' in %s",
+				$name,
+				get_class()
+			));
 		}
 		return $value;
 	}
@@ -69,11 +73,22 @@ abstract class FormPlugin
 		return $extras;
 	}
 
-	protected function stringifyClass()
+	/**
+	 * Tranform the user defined classes and the default classes to a
+	 * class="val1 val2" form
+	 */
+	protected function stringifyClass( $additionalClasses=false )
 	{
 		if( strlen( $this->class ) == 0 ) return '';
 
-		return " class=\"{$this->class}\"";
+		if( $additionalClasses )
+		{
+			return " class=\"{$this->class} {$additionalClasses}\"";
+		}
+		else
+		{
+			return " class=\"{$this->class}\"";
+		}
 	}
 
 	/**

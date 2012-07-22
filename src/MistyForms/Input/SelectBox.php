@@ -77,21 +77,6 @@ class SelectBox extends Input
 		);
 	}
 
-	protected static function isValidValue( $value, $options )
-	{
-		if( $value === null ) return false;
-
-		foreach( $options as $option )
-		{
-			if( strval($option['value']) == $value )
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	/**
 	 * Add description - I'm already forgetting what this does!
 	 */
@@ -120,5 +105,23 @@ class SelectBox extends Input
 		if( $this->selected !== $value ) return '';
 
 		return ' selected="selected"';
+	}
+
+	/**
+	 * Check the user input against the original list of options
+	 */
+	protected static function isValidValue( $value, $options )
+	{
+		if( $value === null ) return false;
+
+		foreach( $options as $option )
+		{
+			if( strval($option['value']) == $value )
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
