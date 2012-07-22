@@ -1,7 +1,9 @@
 TODO:
+- translate all error messages to English
 - add the prefix mf_* to all classes
 - create a basic, phone friendly style for the form
 - add support for translations (brr)
 - add javascript validation
 - add password field
-
+- throw ConfigurationException if the handler is missing from the view
+- would it make sense to add validators to let the user espress more complex requirements?
