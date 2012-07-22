@@ -13,7 +13,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 
 		$handler = new HandlerTestHelper();
 		Form::setupForm( $this->smarty, $handler );
-		$this->smarty->fetch( 'exampleform.tpl' );
+		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$this->assertTrue( $handler->initialized );
 		$this->assertTrue( $handler->handledAction1 );
@@ -30,7 +30,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 
 		$handler = new HandlerTestHelper();
 		Form::setupForm( $this->smarty, $handler );
-		$html =  $this->smarty->fetch( 'exampleform.tpl' );
+		$html =  $this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$this->assertTrue( $handler->initialized );
 		$this->assertFalse( $handler->handledAction1 );
@@ -53,7 +53,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 
 		$handler = new HandlerTestHelper();
 		Form::setupForm( $this->smarty, $handler );
-		$this->smarty->fetch( 'exampleform.tpl' );
+		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$this->assertTrue( $handler->initialized );
 		$this->assertFalse( $handler->handledAction1 );
@@ -74,7 +74,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 
 		$handler = new HandlerTestHelper();
 		Form::setupForm( $this->smarty, $handler );
-		$this->smarty->fetch( 'exampleform.tpl' );
+		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$this->assertTrue(!isset($handler->formData['fakefield']));
 	}

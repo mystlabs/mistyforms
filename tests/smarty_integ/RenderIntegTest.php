@@ -12,14 +12,14 @@ class RenderIntegTest extends MistyForms_SmartyIntegTest
      */
 	public function testRender_missingHandler()
 	{
-		$this->smarty->fetch( 'exampleform.tpl' );
+		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 	}
 
 	public function testRender_handlerInvokation()
 	{
 		$handler = new HandlerTestHelper();
 		Form::setupForm( $this->smarty, $handler );
-		$this->smarty->fetch( 'exampleform.tpl' );
+		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$this->assertTrue( $handler->initialized );
 		$this->assertFalse( $handler->handledAction1 );
@@ -28,7 +28,7 @@ class RenderIntegTest extends MistyForms_SmartyIntegTest
 	public function testRender()
 	{
 		Form::setupForm( $this->smarty, new HandlerTestHelper() );
-		$html = $this->smarty->fetch( 'exampleform.tpl' );
+		$html = $this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$xml = new SimpleXmlElement('<xml>'.$html.'</xml>');
 
