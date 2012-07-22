@@ -10,29 +10,27 @@ class FormBlock extends FormPlugin
 {
 	private $form;
 
+	private $action;
+
 	public function __construct( Form $form, array $attributes )
 	{
 		parent::__construct( $attributes );
 
 		$this->form = $form;
+
+		$this->action = $this->optionalAttribute( 'action', '' );
 	}
 
 	public function renderWithContent( $content )
 	{
-		$class = ' class="form' . ( strlen( $this->class ) ? ' ' . $this->class : '' ) . '"';
-		$extras = $this->stringifyRemainingAttributes();
-
-		$validation = "";
-		if( $this->form->hasErrors() )
-		{
-			$validation = "<div class=\"validation\"></div>";
-		}
-
-		return
-			"\n<form action='' method='POST'{$enctype}{$class}{$extras}>" .
-			$validation .
-			$content .
-			"\n</form>";
+		return sprintf(
+			'<form action="%s" method="POST"%s%s>%s%s</form>',
+			$this->action,
+			$this->stringifyClass('form'),
+			$this->stringifyRemainingAttributes(),
+			$this->validationErrorMessage(),
+			$content
+		);
 	}
 
 	public function render()
@@ -48,6 +46,20 @@ class FormBlock extends FormPlugin
 		}
 
 		throw new \BadMethodCallException( "Unknown method {$method} in " . get_class() );
+	}
+
+	/**
+	 * To be implemented
+	 */
+	protected function validationErrorMessage()
+	{
+		$validation = "";
+		if( $this->form->hasErrors() )
+		{
+			$validation = "<div class=\"validation\"></div>";
+		}
+
+		return $validation;
 	}
 
 	public static function toSmarty( $smarty, $formBlock )
