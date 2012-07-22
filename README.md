@@ -22,7 +22,7 @@ requirements in the Smarty template, and you are done.
 How does it work
 ------------
 
-First you have to create a template with the form and its requirements:
+First you have to create a template with the form and its requirements, let's call it form.tpl:
 
 ```html
 {form}
@@ -63,7 +63,7 @@ class ExampleHandler implements MistyForms\Handler
 // configure smarty here, and assign an instance to $view
 
 MistyForms\Form::setupForm($view, new \ExampleHandler());
-$view->fetch('');
+$view->fetch('form.tpl');
 ```
 
 And that's it. MistyForms will handle everything else for you.
