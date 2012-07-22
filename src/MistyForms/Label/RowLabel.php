@@ -16,31 +16,38 @@ class RowLabel extends Label
 
 	public function render()
 	{
-		$additionalClasses = strlen( $this->class ) > 0 ? " " . $this->class : "";
-		$extras = $this->stringifyRemainingAttributes();
+		return sprintf(
+			'<div%s%s><label%s>%s</label>%s%s</div>',
+			$this->stringifyClass( $this->defaultClasses() ),
+			$this->stringifyRemainingAttributes(),
+			$this->stringifyFor(),
+			$this->text,
+			$this->content,
+			$this->stringifyErrorMessage()
+		);
+	}
 
-		$for = "";
-		$validation = "";
-		if( $this->input )
+	protected function defaultClasses()
+	{
+		$classes = 'formrow';
+		if( $this->input && $this->input->required ) $classes .= ' required';
+		if( $this->input && $this->input->errorMessage ) $classes .= ' error';
+
+		return $classes;
+	}
+
+	protected function stringifyFor()
+	{
+		if( !$this->input ) return '';
+
+		return " for=\"{$this->input->id}\"";
+	}
+
+	protected function stringifyErrorMessage()
+	{
+		if( $this->input && $this->input->errorMessage )
 		{
-			$for = " for=\"{$this->input->id}\"";
-			if( $this->input->required )
-			{
-				$additionalClasses .= " required";
-			}
-
-			if( $this->input->errorMessage )
-			{
-				$additionalClasses .= " error";
-				$validation = "\n<div class=\"validation\">{$this->input->errorMessage}</div>";
-			}
+			return "\n<div class=\"validation\">{$this->input->errorMessage}</div>";
 		}
-
-		return
-		"\n<div class=\"formrow{$additionalClasses}\"{$extras}>" .
-		"\n\t<label{$for}>{$this->text}</label>\n" .
-		$this->content .
-		$validation .
-		"\n</div>";
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Mist\Form\FormBlock;
-use Mist\Form\Label\RowLabel;
+use MistyForms\FormBlock;
+use MistyForms\Label\RowLabel;
 
 function smarty_block_rowlabel($params, $content, $smarty, &$isOpeningTag)
 {
@@ -15,8 +15,6 @@ function smarty_block_rowlabel($params, $content, $smarty, &$isOpeningTag)
 		unset( $params['for'] );
 	}
 
-	$params['content'] = $content;
-	$label = new RowLabel( $params );
-
-	return FormBlock::addLabel( $label, $inputId );
+	$formBlock = FormBlock::fromSmarty( $smarty );
+	return $formBlock->registerAndRenderLabel( new RowLabel( $params, $content ), $inputId );
 }
