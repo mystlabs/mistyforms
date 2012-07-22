@@ -83,9 +83,9 @@ class Form
 	 */
 	public function registerAndRenderAction( Action $action )
 	{
-		$this->ensureIdIsUnique( $input->id );
+		$this->ensureIdIsUnique( $action->id );
 
-		$this->commands[$action->id] = $action;
+		$this->actions[$action->id] = $action;
 
 		return $action->render();
 	}
@@ -97,9 +97,9 @@ class Form
 	{
 		if( !$this->isPostRequest ) return;
 
-		foreach( $this->actions->all() as $name => $action )
+		foreach( $this->actions as $name => $action )
 		{
-			if( $this->request->getPost( $name, false ) )
+			if( isset( $this->postParams[$name] ) )
 			{
 				return $this->handler->handle( $this, $name );
 			}
@@ -120,7 +120,7 @@ class Form
 	public function getData()
 	{
 		$data = array();
-		foreach( $this->inputs->all() as $input )
+		foreach( $this->inputs as $input )
 		{
 			$data[$input->id] = $input->getData();
 		}
@@ -137,9 +137,18 @@ class Form
 		if( isset( $this->inputs[$id] ) || isset( $this->actions[$id] ) )
 		{
 			throw new ConfigurationException( sprintf(
-				'Duplicate ID '%s'. Every input/action must have a unique ID.',
+				"Duplicate ID '%s', every input/action must have a unique ID",
 				$id
 			));
 		}
+	}
+
+	/**
+	 * Add the handler to the view, and initialize it
+	 */
+	public static function setupForm( $view, Handler $handler )
+	{
+		Handler::toSmarty( $view, $handler );
+		$handler->initialize( $view );
 	}
 }
