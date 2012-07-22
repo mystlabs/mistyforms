@@ -11,7 +11,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 	{
 		$_POST = array('action1' => 1);
 
-		$handler = new HandlerTestHelper();
+		$handler = new DualActionHandler();
 		Form::setupForm( $this->smarty, $handler );
 		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
@@ -28,7 +28,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 			'numericfield1' => 'not-a-number'
 		);
 
-		$handler = new HandlerTestHelper();
+		$handler = new DualActionHandler();
 		Form::setupForm( $this->smarty, $handler );
 		$html =  $this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
@@ -51,7 +51,7 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 			'fakefield' => 'fake-data'
 		);
 
-		$handler = new HandlerTestHelper();
+		$handler = new DualActionHandler();
 		Form::setupForm( $this->smarty, $handler );
 		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
@@ -72,10 +72,30 @@ class HandlePostIntegTest extends MistyForms_SmartyIntegTest
 			'fakefield' => 'fake-data'
 		);
 
-		$handler = new HandlerTestHelper();
+		$handler = new DualActionHandler();
 		Form::setupForm( $this->smarty, $handler );
 		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$this->assertTrue(!isset($handler->formData['fakefield']));
+	}
+
+	public function testPost_handlerFails()
+	{
+		$_POST = array(
+			'action1' => 1,
+			'numericfield1' => '10',
+			'textfield1' => 'text-value',
+			'fakefield' => 'fake-data'
+		);
+
+		$handler = new DualActionHandler( false );
+		Form::setupForm( $this->smarty, $handler );
+		$html = $this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
+
+		$xml = new SimpleXmlElement('<xml>'.$html.'</xml>');
+
+		// if the handler fails we expece the form to contain the user data, and generic error message to be there
+		$this->assertEquals('text-value', $xml->form[0]->div[1]->input['value']);
+		$this->assertEquals( 'validation', $xml->form[0]->div['class']);
 	}
 }

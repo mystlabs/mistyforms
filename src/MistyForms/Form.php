@@ -4,6 +4,7 @@ namespace MistyForms;
 
 use MistyForms\Exception\ConfigurationException;
 use MistyForms\Handler;
+use MistyForms\HandlerHelper;
 use MistyForms\Input\Input;
 use MistyForms\Label\Label;
 use MistyForms\Action\Action;
@@ -84,6 +85,7 @@ class Form
 	public function registerAndRenderAction( Action $action )
 	{
 		$this->ensureIdIsUnique( $action->id );
+		$this->ensureHandlerHasAction( $action->id );
 
 		$this->actions[$action->id] = $action;
 
@@ -97,13 +99,21 @@ class Form
 	{
 		if( !$this->isPostRequest ) return;
 
-		foreach( $this->actions as $name => $action )
+		if( $this->hasErrors() ) return false;
+
+		foreach( $this->actions as $actionName => $action )
 		{
-			if( isset( $this->postParams[$name] ) )
-			{
-				return $this->handler->handle( $this, $name );
-			}
+			// Check if the user has requested this action
+			if( !isset( $this->postParams[$actionName] ) ) continue;
+
+			// Make sure the action is available
+			$this->ensureHandlerHasAction( $actionName );
+
+			// pass the data to the handler
+			$this->hasErrors = !$this->handler->$actionName( $this->getData() );
 		}
+
+		return false;
 	}
 
 	/**
@@ -117,7 +127,7 @@ class Form
 	/**
 	 * Returns an array with all the data sent by the user
 	 */
-	public function getData()
+	private function getData()
 	{
 		$data = array();
 		foreach( $this->inputs as $input )
@@ -144,11 +154,27 @@ class Form
 	}
 
 	/**
+	 * Check that the handler is capable of handling this action
+	 * and throw a MistyForms\Exception\ConfigurationException if not
+	 */
+	private function ensureHandlerHasAction( $actionName )
+	{
+		if( !method_exists( $this->handler, $actionName ) )
+		{
+			throw new ConfigurationException(sprintf(
+				"Unknown action '%s' in handler '%s'",
+				$actionName,
+				get_class( $this->handler )
+			));
+		}
+	}
+
+	/**
 	 * Add the handler to the view, and initialize it
 	 */
 	public static function setupForm( $view, Handler $handler )
 	{
-		Handler::toSmarty( $view, $handler );
+		HandlerHelper::toSmarty( $view, $handler );
 		$handler->initialize( $view );
 	}
 }

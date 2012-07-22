@@ -15,9 +15,18 @@ class RenderIntegTest extends MistyForms_SmartyIntegTest
 		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 	}
 
+	/**
+     * @expectedException MistyForms\Exception\ConfigurationException
+     */
+	public function testRender_invalidAction()
+	{
+		Form::setupForm( $this->smarty, new NullHandler() );
+		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
+	}
+
 	public function testRender_handlerInvokation()
 	{
-		$handler = new HandlerTestHelper();
+		$handler = new DualActionHandler();
 		Form::setupForm( $this->smarty, $handler );
 		$this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
@@ -27,7 +36,7 @@ class RenderIntegTest extends MistyForms_SmartyIntegTest
 
 	public function testRender()
 	{
-		Form::setupForm( $this->smarty, new HandlerTestHelper() );
+		Form::setupForm( $this->smarty, new DualActionHandler() );
 		$html = $this->smarty->fetch( __DIR__ . '/exampleform.tpl' );
 
 		$xml = new SimpleXmlElement('<xml>'.$html.'</xml>');
