@@ -1,8 +1,8 @@
 <?php
 
 require_once __DIR__ . '/testenv.php';
-require_once __DIR__ . '/config/smarty.config.php';
-require_once SMARTY_FOLDER . '/distribution/libs/Smarty.class.php';
+require_once __DIR__ . '/integ_config/smarty.config.php';
+require_once SMARTY_FOLDER . '/Smarty.class.php';
 
 use MistyForms\Form;
 use MistyForms\Handler;

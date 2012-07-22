@@ -3,18 +3,18 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require_once('../Smarty/distribution/libs/Smarty.class.php');
+require_once(__DIR__.'/../libs/smarty/distribution/libs/Smarty.class.php');
 
 // view configuration here - see
 $view = new Smarty();
 
-$view->setTemplateDir('../tmp/');
-$view->setCompileDir('../tmp/');
-$view->setConfigDir('../tmp/');
-$view->setCacheDir('../tmp/');
+$view->setTemplateDir(__DIR__.'/tmp/');
+$view->setCompileDir(__DIR__.'/tmp/');
+$view->setConfigDir(__DIR__.'/tmp/');
+$view->setCacheDir(__DIR__.'/tmp/');
 
 // load MistyForms
-require_once('src/MistyForms/loader.php');
+require_once(__DIR__.'/../src/MistyForms/loader.php');
 
 class ExampleHandler implements MistyForms\Handler
 {
@@ -42,4 +42,4 @@ $view->addPluginsDir(MISTYFORMS_PATH.'/smarty_plugins/');
 $view->compile_check = true;
 MistyForms\Form::setupForm($view, new \ExampleHandler());
 
-echo $view->display('test.tpl');
+echo $view->display('example1.tpl');

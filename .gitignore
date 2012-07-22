@@ -1,1 +1,3 @@
 tests/config/smarty.config.php
+examples/tmp/*
+tests/integ_tmp/*
