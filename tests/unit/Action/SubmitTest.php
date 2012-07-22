@@ -13,7 +13,7 @@ class SubmitTest extends MistyForms_Test
 			'name' => 'not_the_id',
 			'class' => 'className1 className2',
 			'additionalAttr' => 'val',
-			'text' => 'This is the text!'
+			'value' => 'This is the text!'
 		));
 
 		$html = $submit->render();
@@ -25,7 +25,7 @@ class SubmitTest extends MistyForms_Test
 	/**
      * @expectedException MistyForms\Exception\ConfigurationException
      */
-	public function testMissingText()
+	public function testMissingValue()
 	{
 		$submit = new Submit(array(
 			'id' => 'id',

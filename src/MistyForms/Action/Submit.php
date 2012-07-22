@@ -9,13 +9,13 @@ use MistyForms\Action\Action;
  */
 class Submit extends Action
 {
-	public $text;
+	public $value;
 
 	public function __construct( array $attributes )
 	{
 		parent::__construct( $attributes );
 
-		$this->text = $this->requiredAttribute( 'text' );
+		$this->value = $this->requiredAttribute( 'value' );
 	}
 
 	public function render()
@@ -24,7 +24,7 @@ class Submit extends Action
 			'<input type="submit" name="%s" id="%s" value="%s"%s%s />',
 			$this->name,
 			$this->id,
-			$this->text,
+			$this->value,
 			$this->stringifyClass(),
 			$this->stringifyRemainingAttributes()
 		);
