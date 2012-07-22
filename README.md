@@ -1,4 +1,4 @@
-README - Under development
+UNDER DEVELOPMENT - NOT READY
 ==========================
 
 What is MistyForms?
@@ -22,24 +22,51 @@ requirements in the Smarty template, and you are done.
 How does it work
 ------------
 
-You have to define the form and its requirements in your template:
+First you have to create a template with the form and its requirements:
 
 ```html
 {form}
 	{rowlabel for=username text="Username"}
 		{textfield id=username required=1 minLength=5 maxLength=20}
+		<!-- Yes you can put additional HTML code wherever you want, isn't that awesome? -->
 	{/rowlabel}
 
 	{rowlabel for=email text="Email"}
 		{emailfield id=email required=1}
 	{/rowlabel}
 
-	{command id=register text="Send form"}
+	{action id=register value="Send form"}
 {/form}
 ```
 
+and then you have to define a Handler and register it:
+
 ```php
+class ExampleHandler implements MistyForms\Handler
+{
+	public function initialize( $view )
+	{
+		// assign values to the view
+		// plugins will get the value automatically based on the id
+		$view->assign(...);
+	}
+
+	// this is the name of the 'action' in the template
+	public function register( array $data )
+	{
+		// $data is an associative array containing the already-validated user input
+
+		// redirect the user to a new page or return 'false' and show the form again
+	}
+}
+
+// configure smarty here, and assign an instance to $view
+
+MistyForms\Form::setupForm($view, new \ExampleHandler());
+$view->fetch('');
 ```
+
+And that's it. MistyForms will handle everything else for you.
 
 Features
 -------
@@ -47,14 +74,14 @@ Features
 What it does:
 
 * Makes your forms more usable:
-** All forms are consistent, both in look and functionality
-** User submitted data is never lost, no matter how many times the user re-submit the form
+	- All forms are consistent, both in look and functionality
+	- User submitted data is never lost, no matter how many times the user re-submit the form
 * Makes it simpler to create forms
-** The form and its requirements are defined in your Smarty template. No more PHP configuration
-** The code is very concise, almost as concise as writing a HTML form
+	- The form and its requirements are defined in your Smarty template. No more PHP configuration
+	- The code is very concise, almost as concise as writing a HTML form
 * Makes your forms safer
-** The input is automatically server-side validated according to your requirements
-** Crafted data is discarded (e.g. values added to a select field using firebug)
+	- The input is automatically server-side validated according to your requirements
+	- Crafted data is discarded (e.g. values added to a select field using firebug)
 
 What it doesn't do:
 
