@@ -16,26 +16,30 @@ $view->setCacheDir('../tmp/');
 // load MistyForms
 require_once('src/MistyForms/loader.php');
 
-class ExampleHandler extends MistyForms\Handler
+class ExampleHandler implements MistyForms\Handler
 {
 	public function initialize( $view )
 	{
 		// assign to the view the variable you need for this form
-		$view->assign('var', 'value');
+		$view->assign('var', 'Title');
 	}
 
 	// this is the name of the 'command' in the template
-	public function actionName($data)
+	public function actionName(array $data)
 	{
 		// $data is an associative array containing the already-validated user input
 
 		// return false; // if anything went wrong, show the form again
-		// return true; // show a new and empty form
+		// return true; // show a new and empty form - not implemented
 		// redirect // probably the best option after a successful form submission
+
+		print_r( $data );
+		exit;
 	}
 }
 
 $view->addPluginsDir(MISTYFORMS_PATH.'/smarty_plugins/');
-$view->assign('_mistyforms_handler', new \ExampleHandler() );
+$view->compile_check = true;
+MistyForms\Form::setupForm($view, new \ExampleHandler());
 
 echo $view->display('test.tpl');
