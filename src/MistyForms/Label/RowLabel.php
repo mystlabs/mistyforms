@@ -29,9 +29,9 @@ class RowLabel extends Label
 
 	protected function defaultClasses()
 	{
-		$classes = 'formrow';
-		if( $this->input && $this->input->required ) $classes .= ' required';
-		if( $this->input && $this->input->errorMessage ) $classes .= ' error';
+		$classes = 'mf_formrow';
+		if( $this->input && $this->input->required ) $classes .= ' mf_required';
+		if( $this->input && $this->input->errorMessage ) $classes .= ' mf_invalid';
 
 		return $classes;
 	}
@@ -47,7 +47,7 @@ class RowLabel extends Label
 	{
 		if( $this->input && $this->input->errorMessage )
 		{
-			return "\n<div class=\"validation\">{$this->input->errorMessage}</div>";
+			return "<div class=\"mf_errormessage\">{$this->input->errorMessage}</div>";
 		}
 	}
 }

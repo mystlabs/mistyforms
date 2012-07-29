@@ -25,7 +25,7 @@ class FormBlock extends FormPlugin
 		return sprintf(
 			'<form action="%s" method="POST"%s%s>%s%s</form>',
 			$this->action,
-			$this->stringifyClass('form'),
+			$this->stringifyClass('mf_form'),
 			$this->stringifyRemainingAttributes(),
 			$this->validationErrorMessage(),
 			$content

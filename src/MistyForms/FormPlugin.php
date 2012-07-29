@@ -83,7 +83,7 @@ abstract class FormPlugin
 
 		if( $additionalClasses )
 		{
-			return " class=\"{$this->class} {$additionalClasses}\"";
+			return " class=\"{$additionalClasses} {$this->class}\"";
 		}
 		else
 		{
