@@ -1,52 +1,50 @@
 <?php
 
-namespace Mist\Form\Input;
+namespace MistyForms\Input;
 
-use Mist\Http\Request;
-use Mist\Presentation\View;
+use MistyForms\Input\InputHelper;
 
 class RadioButton extends Input
 {
-	public $items;
-	public $selected;
+	public $options;
+	public $checked;
 
 	protected function initialize()
 	{
-		$this->items = $this->requiredAttribute( 'items' );
-		$this->selected = $this->optionalAttribute( 'selected', null );
+		$this->options = InputHelper::parseOptions( $this->requiredAttribute( 'options' ) );
+		$this->checked = $this->optionalAttribute( 'checked', null );
 	}
 
 	public function fromView( array $params )
 	{
-		$this->selected = self::readParam( $params, $this->name, '' );
+		$this->checked = self::readParam( $params, $this->name, $this->checked );
 	}
 
-	public function _fromRequest( Request $request )
+	public function _fromRequest( array $request )
 	{
-		// TODO check with $this->items
-		$this->selected = $request->getPost( $this->name );
+		if( isset( $request[$this->id] ) )
+		{
+			$this->checked = $request[$this->id];
+		}
 	}
 
-	public function _assignData( &$result )
+	protected function _getData()
 	{
-		$result[$this->name] = $this->selected;
+		return $this->checked;
 	}
 
 	public function validate()
 	{
-		if( $this->required )
+		if( $this->checked && !InputHelper::isValidValue( $this->checked, $this->options ) )
 		{
-			$found = false;
-			foreach( $this->items as $item )
-			{
-				$found = $found || ( $item['value'] == $this->selected );
-			}
+			$this->errorMessage = "Voce non valida.";
+			return false;
+		}
 
-			if( !$found )
-			{
-				$this->errorMessage = "Devi selezionare almeno un'opzione.";
-				return false;
-			}
+		if( $this->required && !$this->checked )
+		{
+			$this->errorMessage = "Devi selezionare una voce.";
+			return false;
 		}
 
 		return true;
@@ -55,29 +53,32 @@ class RadioButton extends Input
 	public function render()
 	{
 		$radiobuttons = array();
-		foreach( $this->items as $key => $item )
+		foreach( $this->options as $key => $option )
 		{
-			$id = isset( $item['id'] ) ? $item['id'] : $this->id .'_rb_' . $key;
+			$id = isset( $option['id'] ) ? $option['id'] : $this->id .'_rb_' . $key;
 
 			$inputAndLabel = sprintf(
-				'<input type="radio" name="%s" id="%s" value="%s"%s%s%s%s /><label for="%s">%s</label>',
+				'<input type="radio" name="%s" id="%s" value="%s"%s%s /><label for="%s">%s</label>',
 				// radio box
 				$this->name,
 				$id,
-				$item['value'],
-				$this->stringifyClass(),
-				$this->stringifyChecked($item['value']),
+				$option['value'],
+				$this->stringifyChecked($option['value']),
 				$this->stringifyReadOnly(),
-				$this->stringifyRemainingAttributes(),
 				// label
-				$this->id,
-				$item['text']
+				$id,
+				$option['text']
 			);
 
-			$radiobuttons[] = '<span class="radiooption">' . $inputAndLabel . '</span>';
+			$radiobuttons[] = '<span>' . $inputAndLabel . '</span>';
 		}
 
-		return '<div class="radiooptions">' . implode( '', $radiobuttons ) . '</div>';
+		return sprintf(
+			'<div%s%s>%s</div>',
+			$this->stringifyClass('mf_options'),
+			$this->stringifyRemainingAttributes(),
+			implode( '', $radiobuttons )
+		);
 	}
 
 	/**
@@ -92,7 +93,7 @@ class RadioButton extends Input
 
 	protected function stringifyChecked($value)
 	{
-		if( $this->value !== $value ) return '';
+		if( strval($this->checked) !== strval($value) ) return '';
 
 		return ' checked="checked"';
 	}
