@@ -42,7 +42,7 @@ class TextFieldTest extends MistyForms_Test
 		), array());
 		$textField->fromRequest(array());
 
-		$this->assertFalse($textField->Validate());
+		$this->assertFalse($textField->validate());
 		$this->assertTrue(strlen($textField->errorMessage) > 0);
 	}
 
@@ -56,7 +56,7 @@ class TextFieldTest extends MistyForms_Test
 			'id' => 'ciao'
 		));
 
-		$this->assertFalse($textField->Validate());
+		$this->assertFalse($textField->validate());
 		$this->assertTrue(strlen($textField->errorMessage) > 0);
 	}
 
@@ -70,7 +70,7 @@ class TextFieldTest extends MistyForms_Test
 			'id' => '12345678901'
 		));
 
-		$this->assertFalse($textField->Validate());
+		$this->assertFalse($textField->validate());
 		$this->assertTrue(strlen($textField->errorMessage) > 0);
 	}
 
