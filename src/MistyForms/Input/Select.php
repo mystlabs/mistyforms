@@ -2,7 +2,7 @@
 
 namespace MistyForms\Input;
 
-class SelectBox extends Input
+class Select extends Input
 {
 	public $options;
 	public $selected;

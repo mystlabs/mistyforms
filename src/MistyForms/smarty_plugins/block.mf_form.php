@@ -9,7 +9,7 @@ use MistyForms\HandlerHelper;
 /**
  * Render a form, and handle validation if it's a POST request
  */
-function smarty_block_form($params, $content, $smarty, &$isOpeningTag)
+function smarty_block_mf_form($params, $content, $smarty, &$isOpeningTag)
 {
 	// default form id
 	if( !isset( $params['id'] ) )

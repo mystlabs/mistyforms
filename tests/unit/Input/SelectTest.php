@@ -2,9 +2,9 @@
 
 require_once __DIR__.'/../../testenv.php';
 
-use MistyForms\Input\SelectBox;
+use MistyForms\Input\Select;
 
-class SelectBoxTest extends MistyForms_Test
+class SelectTest extends MistyForms_Test
 {
 	private $options;
 
@@ -19,7 +19,7 @@ class SelectBoxTest extends MistyForms_Test
 
 	public function testRenderSelected()
 	{
-		$textField = new SelectBox(array(
+		$textField = new Select(array(
 			'id' => 'selectbox',
 			'class' => 'className1 className2',
 			'additionalAttr' => 'val',
@@ -40,7 +40,7 @@ class SelectBoxTest extends MistyForms_Test
 
 	public function testRenderWithValue()
 	{
-		$textField = new SelectBox(array(
+		$textField = new Select(array(
 			'id' => 'selectbox',
 			'class' => 'className1 className2',
 			'additionalAttr' => 'val',
@@ -63,7 +63,7 @@ class SelectBoxTest extends MistyForms_Test
 
 	public function testValidateWithInvalidValue()
 	{
-		$textField = new SelectBox(array(
+		$textField = new Select(array(
 			'id' => 'selectbox',
 			'options' => $this->options,
 		), array());
@@ -76,7 +76,7 @@ class SelectBoxTest extends MistyForms_Test
 
 	public function testIsValidValue()
 	{
-		$options = SelectBoxHelpTester::parseOptions( array(
+		$options = SelectHelpTester::parseOptions( array(
 			0 => 'val',
 			1 => 'val',
 			2 => 'val',
@@ -84,32 +84,32 @@ class SelectBoxTest extends MistyForms_Test
 			'test' => 'val',
 		));
 
-		$this->assertTrue( SelectBoxHelpTester::isValidValue( 0, $options ) );
-		$this->assertTrue( SelectBoxHelpTester::isValidValue( '0', $options ) );
-		$this->assertTrue( SelectBoxHelpTester::isValidValue( 1, $options ) );
-		$this->assertTrue( SelectBoxHelpTester::isValidValue( '1', $options ) );
-		$this->assertTrue( SelectBoxHelpTester::isValidValue( 'test', $options ) );
+		$this->assertTrue( SelectHelpTester::isValidValue( 0, $options ) );
+		$this->assertTrue( SelectHelpTester::isValidValue( '0', $options ) );
+		$this->assertTrue( SelectHelpTester::isValidValue( 1, $options ) );
+		$this->assertTrue( SelectHelpTester::isValidValue( '1', $options ) );
+		$this->assertTrue( SelectHelpTester::isValidValue( 'test', $options ) );
 
-		$this->assertFalse( SelectBoxHelpTester::isValidValue( null, $options ) );
-		$this->assertFalse( SelectBoxHelpTester::isValidValue( '', $options ) );
-		$this->assertFalse( SelectBoxHelpTester::isValidValue( 'test2', $options ) );
+		$this->assertFalse( SelectHelpTester::isValidValue( null, $options ) );
+		$this->assertFalse( SelectHelpTester::isValidValue( '', $options ) );
+		$this->assertFalse( SelectHelpTester::isValidValue( 'test2', $options ) );
 	}
 
 	public function testParseOptions()
 	{
 		$expected = array( array( 'value' => 1, 'text' => 'Text1' ), array( 'value' => 2, 'text' => 'Text2' ) );
-		$actual = SelectBoxHelpTester::parseOptions( array( 1 => 'Text1', 2 => 'Text2') );
+		$actual = SelectHelpTester::parseOptions( array( 1 => 'Text1', 2 => 'Text2') );
 
 		$this->assertEquals( $expected, $actual );
 
 		$expected = array( array( 'value' => 1, 'text' => 'Text1' ), array( 'value' => 2, 'text' => 'Text2' ) );
-		$actual = SelectBoxHelpTester::parseOptions( $expected );
+		$actual = SelectHelpTester::parseOptions( $expected );
 
 		$this->assertEquals( $expected, $actual );
 	}
 }
 
-class SelectBoxHelpTester extends SelectBox
+class SelectHelpTester extends Select
 {
 	public static function isValidValue( $value, $options )
 	{
