@@ -8,7 +8,7 @@ class EmailFieldTest extends MistyForms_Test
 {
 	public function testRender()
 	{
-		$textField = new EmailField(array(
+		$emailField = new EmailField(array(
 			'id' => 'id',
 			'class' => 'className1 className2',
 			'additionalAttr' => 'val'
@@ -16,10 +16,22 @@ class EmailFieldTest extends MistyForms_Test
 			'id' => 'init-value'
 		));
 
-		$html = $textField->render();
+		$html = $emailField->render();
 		$expected = '<input type="email" name="id" id="id" value="init-value" class="className1 className2" additionalAttr="val" />';
 
 		$this->assertEquals($expected, $html);
+	}
+
+	public function testNotRequired()
+	{
+		$emailField = new EmailField(array(
+			'id' => 'email'
+		), array());
+		$emailField->fromRequest(array(
+			'email' => ''
+		));
+
+		$this->assertTrue($emailField->validate());
 	}
 
 	public function testIsValidEmail()
