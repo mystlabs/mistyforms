@@ -79,15 +79,21 @@ abstract class FormPlugin
 	 */
 	protected function stringifyClass( $additionalClasses=false )
 	{
-		if( strlen( $this->class ) == 0 ) return '';
-
-		if( $additionalClasses )
+		if( $additionalClasses && $this->class )
 		{
 			return " class=\"{$additionalClasses} {$this->class}\"";
 		}
-		else
+		else if( $additionalClasses && !$this->class )
+		{
+			return " class=\"{$additionalClasses}\"";
+		}
+		else if( $this->class && !$additionalClasses )
 		{
 			return " class=\"{$this->class}\"";
+		}
+		else
+		{
+			return '';
 		}
 	}
 
