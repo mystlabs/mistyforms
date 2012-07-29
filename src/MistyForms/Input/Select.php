@@ -2,6 +2,8 @@
 
 namespace MistyForms\Input;
 
+use MistyForms\Input\InputHelper;
+
 class Select extends Input
 {
 	public $options;
@@ -9,7 +11,7 @@ class Select extends Input
 
 	protected function initialize()
 	{
-		$this->options = self::parseOptions( $this->requiredAttribute( 'options' ) );
+		$this->options = InputHelper::parseOptions( $this->requiredAttribute( 'options' ) );
 		$this->selected = $this->optionalAttribute( 'selected', null );
 	}
 
@@ -44,7 +46,7 @@ class Select extends Input
 			return false;
 		}
 
-		if( $this->selected && !self::isValidValue( $this->selected, $this->options ) )
+		if( $this->selected && !InputHelper::isValidValue( $this->selected, $this->options ) )
 		{
 			$this->errorMessage = "Voce non valida.";
 			return false;
@@ -77,51 +79,10 @@ class Select extends Input
 		);
 	}
 
-	/**
-	 * Add description - I'm already forgetting what this does!
-	 */
-	protected static function parseOptions( array $options )
-	{
-		if( empty( $options ) ) return $options;
-
-		// if options is already an array of arrays we assume it's also in the right format
-		$firstKey = array_pop( array_keys( $options ) );
-		if( is_array( $options[$firstKey] ) ) return $options;
-
-		$parsedOptions = array();
-		foreach( $options as $value => $text )
-		{
-			$parsedOptions[] = array(
-				'value' => $value,
-				'text' => $text
-			);
-		}
-
-		return $parsedOptions;
-	}
-
 	protected function stringifySelected($value)
 	{
-		if( $this->selected !== $value ) return '';
+		if( strval($this->selected) !== strval($value) ) return '';
 
 		return ' selected="selected"';
-	}
-
-	/**
-	 * Check the user input against the original list of options
-	 */
-	protected static function isValidValue( $value, $options )
-	{
-		if( $value === null ) return false;
-
-		foreach( $options as $option )
-		{
-			if( strval($option['value']) == $value )
-			{
-				return true;
-			}
-		}
-
-		return false;
 	}
 }
