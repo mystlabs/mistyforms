@@ -2,6 +2,7 @@
 
 use MistyForms\Form;
 use MistyForms\FormBlock;
+use MistyForms\FormBlockHelper;
 use MistyForms\Handler;
 use MistyForms\HandlerHelper;
 
@@ -20,11 +21,11 @@ function smarty_block_form($params, $content, $smarty, &$isOpeningTag)
 		$form = new Form( $handler, !empty($_POST) ? $_POST : null );
 		$formBlock = new FormBlock( $form, $params );
 
-		FormBlock::toSmarty( $smarty, $formBlock );
+		FormBlockHelper::toSmarty( $smarty, $formBlock );
 	}
 	else
 	{
-		$formBlock = FormBlock::fromSmarty( $smarty );
+		$formBlock = FormBlockHelper::fromSmarty( $smarty );
 		$formBlock->executeActions();
 		return $formBlock->renderWithContent( $content );
 	}

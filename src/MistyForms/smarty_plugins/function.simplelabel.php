@@ -13,6 +13,6 @@ function smarty_function_simplelabel( $params, $smarty )
 		$inputId = $params['for'];
 		unset( $params['for'] );
 	}
-	
+
 	return FormBlock::addLabel( new SimpleLabel( $params ), $inputId );
 }

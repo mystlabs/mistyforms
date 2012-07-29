@@ -1,10 +1,10 @@
 <?php
 
 use MistyForms\Action\Submit;
-use MistyForms\FormBlock;
+use MistyForms\FormBlockHelper;
 
 function smarty_function_submit( $params, $smarty )
 {
-	$formBlock = FormBlock::fromSmarty( $smarty );
+	$formBlock = FormBlockHelper::fromSmarty( $smarty );
 	return $formBlock->registerAndRenderAction( new Submit( $params ) );
 }

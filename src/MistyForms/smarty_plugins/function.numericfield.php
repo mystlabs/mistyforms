@@ -1,10 +1,10 @@
 <?php
 
-use MistyForms\FormBlock;
+use MistyForms\FormBlockHelper;
 use MistyForms\Input\NumericField;
 
 function smarty_function_numericfield( $params, $smarty )
 {
-	$formBlock = FormBlock::fromSmarty( $smarty );
+	$formBlock = FormBlockHelper::fromSmarty( $smarty );
 	return $formBlock->registerAndRenderInput( new NumericField( $params, $smarty->getTemplateVars() ) );
 }

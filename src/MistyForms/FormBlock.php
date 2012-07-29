@@ -9,7 +9,6 @@ use MistyForms\Label\Label;
 class FormBlock extends FormPlugin
 {
 	private $form;
-
 	private $action;
 
 	public function __construct( Form $form, array $attributes )
@@ -60,16 +59,5 @@ class FormBlock extends FormPlugin
 		}
 
 		return $validation;
-	}
-
-	public static function toSmarty( $smarty, $formBlock )
-	{
-		$smarty->assign( '_mistyforms_block', $formBlock );
-	}
-
-	public static function fromSmarty( $smarty )
-	{
-		$vars = $smarty->getTemplateVars();
-		return $vars['_mistyforms_block'];
 	}
 }
