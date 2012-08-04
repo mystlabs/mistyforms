@@ -24,7 +24,7 @@ How does it work
 
 First you have to create a template with the form and its requirements, let's call it form.tpl:
 
-```html
+```smarty
 {mf_form}
 	{mf_row label="Username" for=username}
 		{mf_text id=username required=1 minLength=5 maxLength=20}
@@ -42,6 +42,8 @@ First you have to create a template with the form and its requirements, let's ca
 and then you have to define a Handler and register it:
 
 ```php
+<?php
+
 class ExampleHandler implements MistyForms\Handler
 {
 	public function initialize( $view )
