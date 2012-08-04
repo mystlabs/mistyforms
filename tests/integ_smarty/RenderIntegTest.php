@@ -54,6 +54,6 @@ class RenderIntegTest extends MistyForms_SmartyIntegTest
 
 		// assert the buttons exist
 		$this->assertNodeExist($xml->form->input[0]);
-		$this->assertNodeExist($xml->form->input[1]);
+		$this->assertNodeExist($xml->form->button[0]);
 	}
 }

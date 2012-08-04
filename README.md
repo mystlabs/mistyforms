@@ -27,15 +27,15 @@ First you have to create a template with the form and its requirements, let's ca
 ```html
 {mf_form}
 	{mf_row label="Username" for=username}
-		{mf_textfield id=username required=1 minLength=5 maxLength=20}
+		{mf_text id=username required=1 minLength=5 maxLength=20}
 		<!-- Yes you can put additional HTML code wherever you want, isn't that awesome? -->
 	{/mf_row}
 
 	{mf_row label="Email" for=email}
-		{mf_emailfield id=email required=1}
+		{mf_email id=email required=1}
 	{/mf_row}
 
-	{action id=register value="Send form"}
+	{mf_action id=register value="Send form"}
 {/mf_form}
 ```
 

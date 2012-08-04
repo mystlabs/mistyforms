@@ -26,12 +26,12 @@
 			<legend>Let's have a legend</legend>
 
 			{mf_row label="Simple text field" for=textfield}
-				{mf_textfield id=textfield required=1 placeholder="With placeholder text..."}
+				{mf_text id=textfield required=1 placeholder="With placeholder text..."}
 				<small class="mf_inline">The placeholder is done using the HTML5 placeholder attribute</small>
 			{/mf_row}
 
 			{mf_row label="E-mail field" for=emailfield}
-				{mf_emailfield id=emailfield}
+				{mf_email id=emailfield}
 				<small class="mf_inline">This is a HTML5 email field</small>
 			{/mf_row}
 
@@ -53,7 +53,7 @@
 			{/mf_row}
 
 			{mf_row label="A numeric field" for=intfield}
-				{mf_numericfield id=intfield format=integer size=4}
+				{mf_number id=intfield format=integer size=4}
 				<small class="mf_note">This will only accept an integer or no input</small>
 			{/mf_row}
 
