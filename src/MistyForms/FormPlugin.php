@@ -53,7 +53,7 @@ abstract class FormPlugin
 			throw new ConfigurationException(sprintf(
 				"Missing required attribute '%s' in %s",
 				$name,
-				get_class()
+				get_class($this)
 			));
 		}
 		return $value;
