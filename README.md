@@ -25,18 +25,18 @@ How does it work
 First you have to create a template with the form and its requirements, let's call it form.tpl:
 
 ```html
-{form}
-	{rowlabel for=username text="Username"}
-		{textfield id=username required=1 minLength=5 maxLength=20}
+{mf_form}
+	{mf_row label="Username" for=username}
+		{mf_textfield id=username required=1 minLength=5 maxLength=20}
 		<!-- Yes you can put additional HTML code wherever you want, isn't that awesome? -->
-	{/rowlabel}
+	{/mf_row}
 
-	{rowlabel for=email text="Email"}
-		{emailfield id=email required=1}
-	{/rowlabel}
+	{mf_row label="Email" for=email}
+		{mf_emailfield id=email required=1}
+	{/mf_row}
 
 	{action id=register value="Send form"}
-{/form}
+{/mf_form}
 ```
 
 and then you have to define a Handler and register it:

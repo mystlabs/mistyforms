@@ -4,7 +4,7 @@ namespace MistyForms\Label;
 
 use MistyForms\Input\Input;
 
-class RowLabel extends Label
+class Row extends Label
 {
 	public $content;
 
@@ -29,7 +29,7 @@ class RowLabel extends Label
 
 	protected function defaultClasses()
 	{
-		$classes = 'mf_formrow';
+		$classes = 'mf_row';
 		if( $this->input && $this->input->required ) $classes .= ' mf_required';
 		if( $this->input && $this->input->errorMessage ) $classes .= ' mf_invalid';
 

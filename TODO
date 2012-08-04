@@ -7,3 +7,4 @@ TODO:
 - add password field
 - throw ConfigurationException if the handler is missing from the view
 - would it make sense to add validators to let the user espress more complex requirements?
+- replace with .label when there is no plugin?
