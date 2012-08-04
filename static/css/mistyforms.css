@@ -1,0 +1,209 @@
+/****************************************************************
+ * Form elements
+ ****************************************************************/
+
+.mf_form fieldset {
+    margin: 0;
+    padding: 1% 2% 2% 2%;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fafafa; /*non-CSS3 browsers*/
+    background: -webkit-gradient(linear,left top, left bottom,from(#fafafa),to(#f2f2f2)); /*webkit*/
+    background: -moz-linear-gradient(top, #fafafa, #f2f2f2); /*gecko*/
+    background: linear-gradient(#fafafa, #f2f2f2); /*CSS3*/
+}
+
+.mf_form fieldset + fieldset,
+.mf_form .mf_actions {
+    margin-top: 2%;
+}
+
+.mf_form .mf_row {
+    padding: 0.5% 0;
+    clear: left;
+}
+
+.mf_form legend,
+.mf_form .legend {
+    font-size: 110%;
+    font-weight: normal;
+    color: #444;
+    background: #fff;
+    padding: 0 1%;
+    border-bottom: 1px solid #ddd;
+    width: auto;
+}
+
+.mf_form .mf_row label,
+.mf_form .mf_row .label {
+    padding: 5px 5px 10px 5px;
+}
+
+.mf_form label {
+    cursor: pointer;
+}
+
+.mf_form .mf_row input,
+.mf_form .mf_row textarea,
+.mf_form .mf_row select {
+    border: 1px solid #ddd;
+    background: #fff;
+    margin: 0;
+    padding: 5px;
+}
+
+.mf_form .mf_row select {
+    cursor: pointer;
+}
+
+.mf_form .mf_row input[type=checkbox],
+.mf_form .mf_row input[type=radio] {
+    display:inline;
+    margin-top: 8px; /* compensate no border/padding */
+}
+
+.mf_form .mf_row select optgroup {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.mf_form .mf_row input:focus,
+.mf_form .mf_row select:focus,
+.mf_form .mf_row textarea:focus,
+.mf_form .mf_row input:hover,
+.mf_form .mf_row select:hover,
+.mf_form .mf_row textarea:hover,
+.mf_form .mf_row input:active,
+.mf_form .mf_row select:active,
+.mf_form .mf_row textarea:active {
+    border: 1px solid #aaa;
+    background: #fff;
+}
+
+.mf_form .mf_row .mf_options label,
+.mf_form .mf_row .mf_options input {
+    display: inline;
+    float: none;
+}
+
+.mf_form .mf_row.mf_longtext label,
+.mf_form .mf_row.mf_longtext .label {
+    float: right;
+    text-align: left;
+    width: 90%;
+    padding-left: 2%;
+    padding-right: 0;
+}
+
+.mf_form .mf_row.mf_longtext input {
+    float: right;
+}
+
+.mf_form .mf_actions {
+    text-align: center;
+}
+
+/****************************************************************
+ * Validation
+ ****************************************************************/
+
+.mf_form .mf_required label:after,
+.mf_form .mf_required .label:after {
+    content: ' *';
+ }
+
+.mf_form .mf_row .readonly {
+    background: #FAFAFA;
+    color: #AAAAAA;
+    cursor: not-allowed;
+}
+
+.mf_form .mf_row .error {
+    background: #ffe1da;
+    border: 1px solid #f34f4f;
+}
+
+/****************************************************************
+ * Two columns layout - default
+ ****************************************************************/
+
+.mf_form {
+    min-width: 500px;
+}
+
+.mf_form .mf_row + .mf_row {
+    margin-top: 1% ;
+}
+
+.mf_form .mf_row label,
+.mf_form .mf_row .label {
+    display: block;
+    float: left;
+    text-align: right;
+    width: 28%;
+    padding-right: 2%;
+    font-weight: normal;
+    color: #333;
+    overflow: hidden;
+}
+
+.mf_form .mf_note,
+.mf_form .mf_list,
+.mf_form .mf_options {
+    display: block;
+    margin-left: 30%;
+    padding: 5px;
+}
+
+.mf_form .mf_note_inline {
+    display: inline-block;
+}
+
+.mf_form .mf_list label,
+.mf_form .mf_list .label,
+.mf_form .mf_options label,
+.mf_form .mf_options .label {
+    width: auto;
+}
+
+ /****************************************************************
+ * One column layout
+ ****************************************************************/
+
+.mf_single_column {
+    min-width: 250px;
+}
+
+.mf_single_column fieldset {
+    padding: 2% 3% 3% 3%;
+}
+
+.mf_single_column .mf_row + .mf_row {
+    margin-top: 3% ;
+}
+
+.mf_single_column .mf_row label,
+.mf_single_column .mf_row .label {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+.mf_single_column .mf_list,
+.mf_single_column .mf_note,
+.mf_single_column .mf_inlinenote,
+.mf_single_column .mf_options {
+    margin-left: 0;
+}
+
+.mf_single_column .mf_row input,
+.mf_single_column .mf_row textarea,
+.mf_single_column .mf_row select {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}

@@ -20,8 +20,21 @@ class ExampleHandler implements MistyForms\Handler
 {
 	public function initialize( $view )
 	{
+		$view->assign('radiobuttons', array(
+			0 => 'A',
+			1 => 'B',
+			2 => 'C'
+		));
+
+		$view->assign('selects', array(
+			1 => 'Africa',
+			2 => 'Asia',
+			3 => 'Europe',
+			4 => 'North America',
+			5 => 'South America',
+			6 => 'Oceania',
+		));
 		// assign to the view the variable you need for this form
-		$view->assign('var', 'Title');
 	}
 
 	// this is the name of the 'command' in the template
@@ -42,4 +55,4 @@ $view->addPluginsDir(MISTYFORMS_PATH.'/smarty_plugins/');
 $view->compile_check = true;
 MistyForms\Form::setupForm($view, new \ExampleHandler());
 
-echo $view->display('example1.tpl');
+echo $view->display($template);
