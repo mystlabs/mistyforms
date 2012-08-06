@@ -35,11 +35,11 @@
 				<small class="mf_note_inline">This is a HTML5 email field</small>
 			{/mf_row}
 
-			{mf_row label="Radio button - list style"}
+			{mf_row label="Radio button - compact style"}
 				{mf_radiobutton id=radiobuttons options=$radiobuttons}
 			{/mf_row}
 
-			{mf_row label="Radio button - compact style"}
+			{mf_row label="Radio button - list style" class="mf_options_compact"}
 				{mf_radiobutton id=radiobuttons2 options=$radiobuttons}
 			{/mf_row}
 

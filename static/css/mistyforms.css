@@ -30,7 +30,7 @@
     font-weight: normal;
     color: #444;
     background: #fff;
-    padding: 0 1%;
+    padding: 0 5px;
     border-bottom: 1px solid #ddd;
     width: auto;
 }
@@ -57,10 +57,14 @@
     cursor: pointer;
 }
 
-.mf_form .mf_row input[type=checkbox],
-.mf_form .mf_row input[type=radio] {
+.mf_form .mf_row input[type=checkbox] {
     display:inline;
+    width: auto;
     margin-top: 8px; /* compensate no border/padding */
+}
+
+.mf_form .mf_row input[type=radio] {
+    width: auto;
 }
 
 .mf_form .mf_row select optgroup {
@@ -81,10 +85,28 @@
     background: #fff;
 }
 
+/* options */
+.mf_form .mf_row .mf_options span {
+    display: block;
+    margin: 0;
+    padding: 5px;
+    white-space: nowrap;
+}
+
 .mf_form .mf_row .mf_options label,
 .mf_form .mf_row .mf_options input {
     display: inline;
     float: none;
+}
+
+.mf_form .mf_row .mf_options label {
+    padding: 0 20px 0 5px;
+}
+
+/* compact */
+.mf_form .mf_row.mf_options_compact span {
+    float: left;
+    margin-left: -5px;
 }
 
 .mf_form .mf_row.mf_longtext label,
@@ -149,10 +171,13 @@
 }
 
 .mf_form .mf_note,
-.mf_form .mf_list,
 .mf_form .mf_options {
     display: block;
     margin-left: 30%;
+}
+
+.mf_form .mf_note,
+.mf_form .mf_note_inline {
     padding: 5px;
 }
 
@@ -160,8 +185,6 @@
     display: inline-block;
 }
 
-.mf_form .mf_list label,
-.mf_form .mf_list .label,
 .mf_form .mf_options label,
 .mf_form .mf_options .label {
     width: auto;
@@ -192,7 +215,6 @@
     text-align: left;
 }
 
-.mf_single_column .mf_list,
 .mf_single_column .mf_note,
 .mf_single_column .mf_inlinenote,
 .mf_single_column .mf_options {

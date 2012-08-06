@@ -21,18 +21,18 @@ class ExampleHandler implements MistyForms\Handler
 	public function initialize( $view )
 	{
 		$view->assign('radiobuttons', array(
-			0 => 'A',
-			1 => 'B',
-			2 => 'C'
+			0 => 'Option A',
+			1 => 'Option B',
+			2 => 'Option C'
 		));
 
 		$view->assign('selects', array(
-			1 => 'Africa',
-			2 => 'Asia',
-			3 => 'Europe',
-			4 => 'North America',
-			5 => 'South America',
-			6 => 'Oceania',
+			1 => 'Option A',
+			2 => 'Option B',
+			3 => 'Option C',
+			4 => 'Option D',
+			5 => 'Option E',
+			6 => 'Option F',
 		));
 		// assign to the view the variable you need for this form
 	}
