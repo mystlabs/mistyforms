@@ -20,13 +20,13 @@ class ExampleHandler implements MistyForms\Handler
 {
 	public function initialize( $view )
 	{
-		$view->assign('radiobuttons', array(
+		$view->assign('radioOptions', array(
 			0 => 'Option A',
 			1 => 'Option B',
 			2 => 'Option C'
 		));
 
-		$view->assign('selects', array(
+		$view->assign('selectOptions', array(
 			1 => 'Option A',
 			2 => 'Option B',
 			3 => 'Option C',

@@ -74,13 +74,16 @@
 
 .mf_form .mf_row input:focus,
 .mf_form .mf_row select:focus,
-.mf_form .mf_row textarea:focus,
+.mf_form .mf_row textarea:focus {
+    border: 1px solid #aaa;
+    background: #fff;
+    box-shadow: 0 0 5px 0 #0066FF;
+}
+
+
 .mf_form .mf_row input:hover,
 .mf_form .mf_row select:hover,
-.mf_form .mf_row textarea:hover,
-.mf_form .mf_row input:active,
-.mf_form .mf_row select:active,
-.mf_form .mf_row textarea:active {
+.mf_form .mf_row textarea:hover {
     border: 1px solid #aaa;
     background: #fff;
 }
@@ -110,7 +113,9 @@
 }
 
 .mf_form .mf_row.mf_longtext label,
-.mf_form .mf_row.mf_longtext .label {
+.mf_form .mf_row.mf_longtext .label,
+.mf_form .mf_row.mf_longtext .mf_errormessage,
+.mf_form .mf_row.mf_longtext .mf_note {
     float: right;
     text-align: left;
     width: 90%;
@@ -130,8 +135,8 @@
  * Validation
  ****************************************************************/
 
-.mf_form .mf_required label:after,
-.mf_form .mf_required .label:after {
+.mf_form .mf_required > label:after,
+.mf_form .mf_required > .label:after {
     content: ' *';
  }
 
@@ -141,9 +146,20 @@
     cursor: not-allowed;
 }
 
-.mf_form .mf_row .error {
-    background: #ffe1da;
+.mf_form .mf_row.mf_invalid input {
     border: 1px solid #f34f4f;
+}
+
+.mf_form .mf_row.mf_invalid input:focus,
+.mf_form .mf_row.mf_invalid select:focus,
+.mf_form .mf_row.mf_invalid textarea:focus {
+    box-shadow: 0 0 5px 0 #f34f4f;
+}
+
+.mf_form .mf_row .mf_errormessage {
+    color: red;
+    font-weight: bold;
+    font-size: 80%;
 }
 
 /****************************************************************
@@ -171,13 +187,15 @@
 }
 
 .mf_form .mf_note,
-.mf_form .mf_options {
+.mf_form .mf_options,
+.mf_form .mf_errormessage {
     display: block;
     margin-left: 30%;
 }
 
 .mf_form .mf_note,
-.mf_form .mf_note_inline {
+.mf_form .mf_note_inline,
+.mf_form .mf_errormessage {
     padding: 5px;
 }
 

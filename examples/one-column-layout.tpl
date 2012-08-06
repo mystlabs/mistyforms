@@ -36,11 +36,11 @@
 			{/mf_row}
 
 			{mf_row label="Radio button - compact style"}
-				{mf_radiobutton id=radiobuttons options=$radiobuttons}
+				{mf_radiobutton id=radiobuttons options=$radioOptions required=1}
 			{/mf_row}
 
 			{mf_row label="Radio button - list style" class="mf_options_compact"}
-				{mf_radiobutton id=radiobuttons2 options=$radiobuttons}
+				{mf_radiobutton id=radiobuttons2 options=$radioOptions}
 			{/mf_row}
 
 		</fieldset>
@@ -49,7 +49,7 @@
 			<legend>And another legend</legend>
 
 			{mf_row label="A select box" for=select}
-				{mf_select id=select options=$selects selected=4}
+				{mf_select id=select options=$selectOptions selected=4}
 			{/mf_row}
 
 			{mf_row label="A numeric field" for=intfield}
