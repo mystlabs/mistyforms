@@ -35,15 +35,15 @@ class RadioButton extends Input
 
 	public function validate()
 	{
-		if( $this->checked && !InputHelper::isValidValue( $this->checked, $this->options ) )
+		if( $this->required && !$this->checked )
 		{
-			$this->errorMessage = "Voce non valida.";
+			$this->errorMessage = "Please select an item.";
 			return false;
 		}
 
-		if( $this->required && !$this->checked )
+		if( $this->checked && !InputHelper::isValidValue( $this->checked, $this->options ) )
 		{
-			$this->errorMessage = "Devi selezionare una voce.";
+			$this->errorMessage = "Invalid selection.";
 			return false;
 		}
 

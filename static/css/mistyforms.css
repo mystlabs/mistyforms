@@ -156,9 +156,13 @@
     box-shadow: 0 0 5px 0 #f34f4f;
 }
 
+.mf_form .mf_formstatus,
 .mf_form .mf_row .mf_errormessage {
     color: red;
     font-weight: bold;
+}
+
+.mf_form .mf_row .mf_errormessage {
     font-size: 80%;
 }
 

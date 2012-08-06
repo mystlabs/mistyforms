@@ -20,7 +20,7 @@ class EmailField extends TextField
 
 		if( $this->value && filter_var( $this->value, FILTER_VALIDATE_EMAIL ) === false )
 		{
-			$this->errorMessage = "L'indirizzo e-mail non è valido.";
+			$this->errorMessage = "Please enter a valid e-mail address.";
 			return false;
 		}
 

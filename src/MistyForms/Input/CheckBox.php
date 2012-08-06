@@ -33,7 +33,7 @@ class CheckBox extends Input
 	{
 		if( $this->required && !$this->checked )
 		{
-			$this->errorMessage = "Questo campo è obbligatorio.";
+			$this->errorMessage = "This is required";
 			return false;
 		}
 

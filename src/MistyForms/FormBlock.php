@@ -52,12 +52,11 @@ class FormBlock extends FormPlugin
 	 */
 	protected function validationErrorMessage()
 	{
-		$validation = "";
 		if( $this->form->hasErrors() )
 		{
-			$validation = "<div class=\"validation\"></div>";
+			return '<p class="mf_formstatus">Please correct the highlighted errors before proceeding.</p>';
 		}
 
-		return $validation;
+		return '';
 	}
 }

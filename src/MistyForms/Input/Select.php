@@ -42,13 +42,13 @@ class Select extends Input
 	{
 		if( $this->required && ( $this->selected === null || $this->selected === '' ))
 		{
-			$this->errorMessage = "Devi selezionare una voce.";
+			$this->errorMessage = "Please select an item.";
 			return false;
 		}
 
 		if( $this->selected && !InputHelper::isValidValue( $this->selected, $this->options ) )
 		{
-			$this->errorMessage = "Voce non valida.";
+			$this->errorMessage = "Invalid selection.";
 			return false;
 		}
 

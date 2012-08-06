@@ -39,19 +39,25 @@ class TextField extends Input
 	{
 		if( $this->required && strlen( $this->value ) == 0 )
 		{
-			$this->errorMessage = "Questo campo è obbligatorio.";
+			$this->errorMessage = "This field is required.";
 			return false;
 		}
 
 		if( $this->minLength > 0 && strlen( $this->value ) < $this->minLength )
 		{
-			$this->errorMessage =  "Valore troppo corto. La lunghezza minima consentita è {$this->minLength} caratteri.";
+			$this->errorMessage = sprintf(
+				'Too short, minimum length is %d',
+				$this->minLength
+			);
 			return false;
 		}
 
 		if( $this->maxLength > 0 && strlen( $this->value ) > $this->maxLength )
 		{
-			$this->errorMessage =  "Valore troppo lungo. La lunghezza massima consentita è {$this->maxLength} caratteri.";
+			$this->errorMessage = sprintf(
+				'Too long, maximum length is %d',
+				$this->maxLength
+			);
 			return false;
 		}
 

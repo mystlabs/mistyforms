@@ -37,13 +37,21 @@ class NumericField extends TextField
 
 			if( $this->minValue !== false && $this->value < $this->minValue )
 			{
-				$this->errorMessage = "Devi inserire un numero più grande di " . $this->minValue;
+				$this->errorMessage = sprintf(
+					'Please enter a value of %d or higher',
+					$this->minValue
+				);
+
 				return false;
 			}
 
 			if( $this->maxValue !== false && $this->value > $this->maxValue )
 			{
-				$this->errorMessage = "Devi inserire un numero più piccolo di " . $this->minValue;
+				$this->errorMessage = sprintf(
+					'Please enter a value of %d or lower',
+					$this->maxValue
+				);
+
 				return false;
 			}
 		}
