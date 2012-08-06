@@ -103,6 +103,6 @@ Browser support
 ---------------
 
 MistyForms supports all modern browsers, IE6 included.
-Note: mf_button required IE7+, because IE6 doesn't handle <button> elements correctly
+Note: mf_button required IE7+, because IE6 doesn't handle ```<button>``` elements correctly
 
 The styles are still under development, and have been tested only with Firefox 5+ and Chrome 10+.
