@@ -1,3 +1,0 @@
-[submodule "libs/smarty"]
-	path = libs/smarty
-	url = git://github.com/cebe/smarty.git

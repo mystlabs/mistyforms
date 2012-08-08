@@ -1,0 +1,13 @@
+{
+    "name": "mistylabs/mistyforms",
+    "type": "library",
+    "description": "MistyForms - form builder based on Smarty 3",
+    "keywords": ["templating", "forms", "formbuilder"],
+    "require": {
+        "php": ">=5.3",
+        "smarty/smarty" : "3.1.*"
+    },
+    "autoload": {
+       "psr-0": {"MistyForms": "src/"}
+    }
+}
