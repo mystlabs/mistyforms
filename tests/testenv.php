@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../src/MistyForms/loader.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use MistyForms\Handler;
 use MistyForms\Input\Input;
@@ -16,7 +16,7 @@ class NullHandler implements Handler
 {
 	public $initialized = false;
 
-	public function initialize( $view )
+	public function initializeView($view)
 	{
 		$this->initialized = true;
 	}

@@ -10,23 +10,25 @@ use MistyForms\FormPlugin;
  */
 abstract class Label extends FormPlugin
 {
-	public $for;
-	public $text;
-	public $input;
+    public $for;
+    public $text;
+    public $input;
 
-	public function __construct( array $attributes )
-	{
-		parent::__construct( $attributes );
+    public function __construct(array $attributes)
+    {
+        parent::__construct($attributes);
 
-		$this->text = $this->requiredAttribute( 'text' );
+        $this->text = $this->requiredAttribute('text');
 
-		$this->initialize();
-	}
+        $this->initialize();
+    }
 
-	protected function initialize(){}
+    protected function initialize()
+    {
+    }
 
-	public function setInput( Input $input )
-	{
-		$this->input = $input;
-	}
+    public function setInput(Input $input)
+    {
+        $this->input = $input;
+    }
 }

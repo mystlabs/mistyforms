@@ -4,5 +4,5 @@ namespace MistyForms;
 
 interface Handler
 {
-	public function initialize( $view );
+    public function initializeView($view);
 }

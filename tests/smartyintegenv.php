@@ -2,10 +2,10 @@
 
 require_once __DIR__ . '/testenv.php';
 require_once __DIR__ . '/integ_config/smarty.config.php';
-require_once SMARTY_FOLDER . '/Smarty.class.php';
 
 class MistyForms_SmartyIntegTest extends MistyForms_Test
 {
+    /** @var \Smarty */
 	protected $smarty;
 
 	public function setUp()

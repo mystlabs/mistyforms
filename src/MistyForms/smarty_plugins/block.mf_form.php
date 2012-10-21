@@ -11,22 +11,19 @@ use MistyForms\HandlerHelper;
  */
 function smarty_block_mf_form($params, $content, $smarty, &$isOpeningTag)
 {
-	// default form id
-	if( !isset( $params['id'] ) )
-		$params['id'] = 'mistyforms';
+    // default form id
+    if (!isset($params['id']))
+        $params['id'] = 'mistyforms';
 
-	if( $isOpeningTag )
-	{
-		$handler = HandlerHelper::fromSmarty( $smarty );
-		$form = new Form( $handler, !empty($_POST) ? $_POST : null );
-		$formBlock = new FormBlock( $form, $params );
+    if ($isOpeningTag) {
+        $handler = HandlerHelper::fromSmarty($smarty);
+        $form = new Form($handler, !empty($_POST) ? $_POST : null);
+        $formBlock = new FormBlock($form, $params);
 
-		FormBlockHelper::toSmarty( $smarty, $formBlock );
-	}
-	else
-	{
-		$formBlock = FormBlockHelper::fromSmarty( $smarty );
-		$formBlock->executeActions();
-		return $formBlock->renderWithContent( $content );
-	}
+        FormBlockHelper::toSmarty($smarty, $formBlock);
+    } else {
+        $formBlock = FormBlockHelper::fromSmarty($smarty);
+        $formBlock->executeActions();
+        return $formBlock->renderWithContent($content);
+    }
 }

@@ -10,32 +10,31 @@ use MistyForms\Exception\ConfigurationException;
  */
 class Button extends Action
 {
-	public $content;
+    public $content;
 
-	public function __construct( array $attributes, $content )
-	{
-		parent::__construct( $attributes );
+    public function __construct(array $attributes, $content)
+    {
+        parent::__construct($attributes);
 
-		if( !$content )
-		{
-			throw new ConfigurationException(sprintf(
-				'Missing content for Button: %s',
-				$this->id
-			));
-		}
+        if (!$content) {
+            throw new ConfigurationException(sprintf(
+                'Missing content for Button: %s',
+                $this->id
+            ));
+        }
 
-		$this->content = $content;
-	}
+        $this->content = $content;
+    }
 
-	public function render()
-	{
-		return sprintf(
-			'<button name="%s" id="%s"%s%s>%s</button>',
-			$this->name,
-			$this->id,
-			$this->stringifyClass(),
-			$this->stringifyRemainingAttributes(),
-			$this->content
-		);
-	}
+    public function render()
+    {
+        return sprintf(
+            '<button name="%s" id="%s"%s%s>%s</button>',
+            $this->name,
+            $this->id,
+            $this->stringifyClass(),
+            $this->stringifyRemainingAttributes(),
+            $this->content
+        );
+    }
 }
