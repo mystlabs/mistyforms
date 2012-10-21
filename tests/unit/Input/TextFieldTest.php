@@ -74,4 +74,24 @@ class TextFieldTest extends MistyForms_Test
 		$this->assertTrue(strlen($textField->errorMessage) > 0);
 	}
 
+    public function testPattern()
+    {
+        $textField = new TextField(array(
+            'id' => 'id',
+            'maxLength' => 10,
+            'pattern' => '^[a-zA-Z]{5}$',
+            'patternMessage' => 'Message!'
+        ), array());
+
+        $textField->fromRequest(array(
+            'id' => 'abcde'
+        ));
+        $this->assertTrue($textField->validate());
+
+        $textField->fromRequest(array(
+            'id' => 'abcdef'
+        ));
+        $this->assertFalse($textField->validate());
+    }
+
 }

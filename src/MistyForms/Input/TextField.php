@@ -8,6 +8,8 @@ class TextField extends Input
 	public $minLength;
 	public $maxLength;
 	public $type;
+    public $pattern;
+    public $patternMessage;
 
 	protected function initialize()
 	{
@@ -15,6 +17,10 @@ class TextField extends Input
 		$this->minLength = $this->optionalAttribute( 'minLength', -1 );
 		$this->maxLength = $this->optionalAttribute( 'maxLength', -1 );
 		$this->type = $this->optionalAttribute( 'type', 'text' );
+		$this->pattern = $this->optionalAttribute( 'pattern', false );
+        if ($this->pattern) {
+            $this->patternMessage = $this->requiredAttribute( 'patternMessage' );
+        }
 	}
 
 	public function fromView( array $params )
@@ -60,6 +66,11 @@ class TextField extends Input
 			);
 			return false;
 		}
+
+        if ($this->pattern && !preg_match("/{$this->pattern}/", $this->value)) {
+            $this->errorMessage = $this->patternMessage;
+            return false;
+        }
 
 		return true;
 	}
