@@ -1,5 +1,5 @@
 {
-    "name": "mistylabs/mistyforms",
+    "name": "mystlabs/mistyforms",
     "type": "library",
     "description": "MistyForms - form builder based on Smarty 3",
     "keywords": ["templating", "forms", "formbuilder"],
