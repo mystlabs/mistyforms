@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Input\TextArea;
 
-class TextAreaTest extends MistyForms_Test
+class TextAreaTest extends PHPUnit_Framework_TestCase
 {
     public function testRender()
     {

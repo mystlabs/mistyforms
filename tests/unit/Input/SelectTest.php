@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Input\Select;
 
-class SelectTest extends MistyForms_Test
+class SelectTest extends PHPUnit_Framework_TestCase
 {
     private $options;
 

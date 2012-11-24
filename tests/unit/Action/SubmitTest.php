@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Action\Submit;
 
-class SubmitTest extends MistyForms_Test
+class SubmitTest extends PHPUnit_Framework_TestCase
 {
     public function testRender()
     {

@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Input\InputHelper;
 
-class InputHelperTest extends MistyForms_Test
+class InputHelperTest extends PHPUnit_Framework_TestCase
 {
     private $options;
 

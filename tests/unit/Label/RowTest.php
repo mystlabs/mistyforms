@@ -1,11 +1,9 @@
 <?php
 
-require_once __DIR__.'/../../testenv.php';
-
 use MistyForms\Input\TextField;
 use MistyForms\Label\Row;
 
-class RowTest extends MistyForms_Test
+class RowTest extends PHPUnit_Framework_TestCase
 {
 	public function testRender()
 	{

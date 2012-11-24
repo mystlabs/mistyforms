@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Action\Button;
 
-class ButtonTest extends MistyForms_Test
+class ButtonTest extends PHPUnit_Framework_TestCase
 {
     public function testRender()
     {

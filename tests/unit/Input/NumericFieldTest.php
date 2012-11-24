@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Input\NumericField;
 
-class NumericFieldTest extends MistyForms_Test
+class NumericFieldTest extends PHPUnit_Framework_TestCase
 {
     public function testMinValue()
     {

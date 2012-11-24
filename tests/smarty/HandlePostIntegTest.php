@@ -1,11 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../smartyintegenv.php';
-
+use MistyForms\Test\SmartyIntegTest;
 use MistyForms\Form;
-use MistyForms\Handler;
+use MistyForms\Test\DualActionHandler;
 
-class HandlePostIntegTest extends MistyForms_SmartyIntegTest
+class HandlePostIntegTest extends SmartyIntegTest
 {
     public function testPost_handlerInvokation()
     {

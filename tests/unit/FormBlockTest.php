@@ -1,11 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../testenv.php';
-
 use MistyForms\FormBlock;
 use MistyForms\Form;
+use MistyForms\Test\NullHandler;
 
-class FormBlockTest extends MistyForms_Test
+class FormBlockTest extends PHPUnit_Framework_TestCase
 {
     public function testRender()
     {

@@ -1,8 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
-class InputTest extends MistyForms_Test
+class InputTest extends PHPUnit_Framework_TestCase
 {
     public function testIdIsRequired()
     {

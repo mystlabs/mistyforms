@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__.'/../smartyintegenv.php';
-
+use MistyForms\Test\SmartyIntegTest;
 use MistyForms\Form;
-use MistyForms\Handler;
+use MistyForms\Test\DualActionHandler;
+use MistyForms\Test\NullHandler;
 
-class RenderIntegTest extends MistyForms_SmartyIntegTest
+class RenderIntegTest extends SmartyIntegTest
 {
 	/**
      * @expectedException MistyForms\Exception\ConfigurationException

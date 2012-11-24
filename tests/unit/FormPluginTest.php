@@ -1,8 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../testenv.php';
-
-class FormPluginTest extends MistyForms_Test
+class FormPluginTest extends PHPUnit_Framework_TestCase
 {
     public function testOptionalAttribute()
     {

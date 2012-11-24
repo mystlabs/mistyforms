@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+        bootstrap="vendor/autoload.php"
+        cacheTokens="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        forceCoversAnnotation="false"
+        mapTestClassNameToCoveredClassName="false"
+        printerClass="PHPUnit_TextUI_ResultPrinter"
+
+        processIsolation="false"
+        stopOnError="true"
+        stopOnFailure="true"
+        stopOnIncomplete="true"
+        stopOnSkipped="true"
+        testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
+
+        strict="true"
+        verbose="false">
+
+    <testsuites>
+        <testsuite name="Unit tests">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <testsuite name="Integration tests">
+            <directory>tests/smarty</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <!-- Writable temporary folder for integration tests -->
+        <const name="SMARTY_TMP_FOLDER" value="tmp/"/>
+    </php>
+
+</phpunit>

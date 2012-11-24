@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Input\CheckBox;
 
-class CheckBoxTest extends MistyForms_Test
+class CheckBoxTest extends PHPUnit_Framework_TestCase
 {
     public function testRender()
     {

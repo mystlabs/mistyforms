@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__.'/../../testenv.php';
-
 use MistyForms\Input\EmailField;
 
-class EmailFieldTest extends MistyForms_Test
+class EmailFieldTest extends PHPUnit_Framework_TestCase
 {
 	public function testRender()
 	{

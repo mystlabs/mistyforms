@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../testenv.php';
-
 use MistyForms\Input\RadioButton;
 
-class RadioButtonTest extends MistyForms_Test
+class RadioButtonTest extends PHPUnit_Framework_TestCase
 {
     private $options;
 
