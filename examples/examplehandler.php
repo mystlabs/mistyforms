@@ -1,9 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-require_once(__DIR__ . '/../libs/smarty/distribution/libs/Smarty.class.php');
+require '../vendor/autoload.php';
 
 // view configuration here - see
 $view = new Smarty();
@@ -12,9 +9,6 @@ $view->setTemplateDir(__DIR__ . '/tmp/');
 $view->setCompileDir(__DIR__ . '/tmp/');
 $view->setConfigDir(__DIR__ . '/tmp/');
 $view->setCacheDir(__DIR__ . '/tmp/');
-
-// load MistyForms
-require_once(__DIR__ . '/../src/MistyForms/loader.php');
 
 class ExampleHandler implements MistyForms\Handler
 {
@@ -51,7 +45,7 @@ class ExampleHandler implements MistyForms\Handler
     }
 }
 
-$view->addPluginsDir(MISTYFORMS_PATH . '/smarty_plugins/');
+$view->addPluginsDir('../src/smarty_plugins/');
 $view->compile_check = true;
 MistyForms\Form::setupForm($view, new \ExampleHandler());
 
