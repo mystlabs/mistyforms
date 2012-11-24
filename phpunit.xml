@@ -32,7 +32,7 @@
 
     <php>
         <!-- Writable temporary folder for integration tests -->
-        <const name="SMARTY_TMP_FOLDER" value="tmp/"/>
+        <const name="SMARTY_TMP_FOLDER" value="tests/tmp/"/>
     </php>
 
 </phpunit>
